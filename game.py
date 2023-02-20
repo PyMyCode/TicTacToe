@@ -16,7 +16,13 @@ class TicTacToeGame:
 
     def __init__(self):
         self.board = [["-" for j in range(BOARD_SIZE)]for i in range(BOARD_SIZE)] # creating the blank board
-        self._human_player_move() # first move is for human
+        self._choosing_starting_player() # first move is for human
+
+    def _choosing_starting_player(self):
+        if random.randint(0,1):
+            self._human_player_move()
+        else:
+            self._robot_player_move()
 
     def _display_board(self):
         for r in self.board:
@@ -131,7 +137,7 @@ class TicTacToeGame:
     def _robot_player_move(self): 
         
         print("\nRobot's move:")
-        if len(HUMAN.move) == 1: # first move
+        if len(HUMAN.move) == 0 or len(HUMAN.move) == 1: # first move
             while True:
                 row = random.randint(0, BOARD_SIZE - 1)
                 col = random.randint(0, BOARD_SIZE - 1)
